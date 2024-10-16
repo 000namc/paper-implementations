@@ -1,0 +1,6 @@
+*.pth
+wandb
+__pycache__
+*.bin
+*.pt
+*.org~
