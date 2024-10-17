@@ -37,7 +37,7 @@ def check_branch(model_name):
         current_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).strip().decode('utf-8')
 
         os.chdir(prev_dir)  # 디렉토리 변경
-        if current_branch != model_name:
+        if current_branch != branch_name:
             raise ValueError(f"Error: Current branch is {current_branch}, not {branch_name}.")
     except subprocess.CalledProcessError as e:
         raise Exception(f"Error during branch check: {e}")

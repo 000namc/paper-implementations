@@ -22,11 +22,12 @@ from utils.experiment_committer import git_push_process
 parser = argparse.ArgumentParser(description="Git push for specific experiment")
 parser.add_argument('--model_name', required=True, help='The name of the model')
 parser.add_argument('--experiment_name', required=True, help='The name of the experiment')
+args = parser.parse_args()
 
 class cfg:
     seed = 123
-    model_name = parser.model_name
-    experiment_name = parser.experiment_name
+    model_name = args.model_name
+    experiment_name = args.experiment_name
 
 # git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
