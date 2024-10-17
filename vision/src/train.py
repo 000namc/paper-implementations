@@ -29,7 +29,7 @@ class cfg:
     model_name = args.model_name
     experiment_name = args.experiment_name
 
-# git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
+git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
 logger = setup_logger(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 details_file = '/app/paper-implementations/vision/experiments/details.json'
@@ -54,3 +54,4 @@ def set_seed(seed = 42):
     print('> SEEDING DONE')
     
 set_seed(cfg.seed)
+# something to written
