@@ -1,6 +1,10 @@
 *.pth
 wandb
+notebook
+*.ipynb
+*.ipynb~
 __pycache__
 *.bin
 *.pt
 *.org~
+*.log
