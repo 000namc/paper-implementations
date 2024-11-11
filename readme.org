@@ -11,7 +11,7 @@ deep learning paper를 하나씩 구현해보고 아카이브 하기 위해 만�
 #+BEGIN_SRC
 python train.py --model_name alexnet --experiment_name init
 #+END_SRC
-- 또한, train.py는 experiments/details.json 경로에 실험에대한 요약정보를 적어 주어야 합니다. 
+- 또한, train.py를 수행하기 전에 experiments/details.json 경로에 실험에대한 요약정보를 적어 주어야 합니다. 의미 없이 수행하는 실험이 없도록 만듭니다. 
 #+BEGIN_SRC
 {
     "alexnet" : {
@@ -20,6 +20,10 @@ python train.py --model_name alexnet --experiment_name init
         }
     }
 }
+#+END_SRC
+- 실험과정에서 쌓이는 로그를 적절히 wandb에 쌓아 결과를 정리합니다.
+#+BEGIN_SRC
+wandb.init(project=cfg.model_name, name=cfg.experiment_name)
 #+END_SRC
 
 ** vision
