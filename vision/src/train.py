@@ -82,8 +82,8 @@ for epoch in range(1, cfg.num_epochs+1):
     with tqdm(train_dl, leave=True) as pbar:
         optimizer.zero_grad()
 
-        for idx, images, labels in enumerate(pbar):
-            images, labels = images.to(device), labels.to(device)
+        for idx, batch in enumerate(pbar):
+            images, labels = batch[0].to(device), batch[1].to(device)
 
             outputs = model(images)
             loss = criterion(outputs, labels)
