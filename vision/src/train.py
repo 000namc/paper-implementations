@@ -36,7 +36,7 @@ class cfg:
 git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
 logger = setup_logger(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
-details_file = '/app/paper-implementations/vision/experiments/details.json'
+details_file = '/app/paper_implementations/vision/experiments/details.json'
 with open(details_file, 'r') as f:
     details = json.load(f)
 
