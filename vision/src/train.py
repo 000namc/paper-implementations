@@ -32,7 +32,8 @@ class cfg:
     experiment_name = args.experiment_name
     num_epochs = 10
 
-# git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
+# python train.py --model_name alexnet --experiment_name init
+git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
 logger = setup_logger(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 details_file = '/app/paper-implementations/vision/experiments/details.json'
