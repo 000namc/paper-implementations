@@ -32,10 +32,12 @@ class cfg:
     experiment_name = args.experiment_name
     num_epochs = 10
 
+# python train.py --model_name alexnet --experiment_name init
+# wandb.init(project=cfg.model_name, name=cfg.experiment_name)
 # git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
 logger = setup_logger(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
-details_file = '/app/paper-implementations/vision/experiments/details.json'
+details_file = '/app/paper_implementations/vision/experiments/details.json'
 with open(details_file, 'r') as f:
     details = json.load(f)
 
@@ -49,10 +51,8 @@ def set_seed(seed = 42):
     random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
-    # When running on the CuDNN backend, two further options must be set
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-    # Set a fixed value for the hash seed
     os.environ['PYTHONHASHSEED'] = str(seed)
     print('> SEEDING DONE')
     
@@ -78,11 +78,11 @@ for epoch in range(1, cfg.num_epochs+1):
     total_loss = 0.0
 
     # training phase
-    with tqdm(train_dl, leave=True) as pbar:
+    with tqdm(train_dl, dynamic_ncols=True, mininterval=5.0, leave=True) as pbar:
         optimizer.zero_grad()
 
-        for idx, images, labels in enumerate(pbar):
-            images, labels = images.to(device), labels.to(device)
+        for idx, batch in enumerate(pbar):
+            images, labels = batch[0].to(device), batch[1].to(device)
 
             outputs = model(images)
             loss = criterion(outputs, labels)
@@ -103,15 +103,13 @@ for epoch in range(1, cfg.num_epochs+1):
     total = 0
     total_val_loss = 0.0
 
-    with torch.no_grad():  # 평가 시에는 그래디언트 계산을 하지 않음
+    with torch.no_grad():
         for images, labels in valid_dl:
             images, labels = images.to(device), labels.to(device)
 
-            # 순전파
             outputs = model(images)
             loss = criterion(outputs, labels)
 
-            # 정확도 계산
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
