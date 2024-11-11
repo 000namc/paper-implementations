@@ -4,7 +4,7 @@ import json
 
 # 실험 요약 정보를 확인
 def check_experiment_details(model_name, experiment_name):
-    details_file = '/app/paper-implementations/vision/experiments/details.json'
+    details_file = '/app/paper_implementations/vision/experiments/details.json'
     
     # JSON 파일 읽기
     with open(details_file, 'r') as f:
@@ -31,7 +31,7 @@ def check_branch(model_name):
     try:
         prev_dir = os.getcwd()
         branch_name = f'experiments/{model_name}'
-        os.chdir('/app/paper-implementations/')  # 디렉토리 변경
+        os.chdir('/app/paper_implementations/')  # 디렉토리 변경
 
         # 현재 브랜치 가져오기
         current_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).strip().decode('utf-8')
@@ -47,7 +47,7 @@ def git_push(model_name, experiment_name):
     try:
         prev_dir = os.getcwd()
         branch_name = f'experiments/{model_name}'
-        os.chdir('/app/paper-implementations/')  # 디렉토리 변경
+        os.chdir('/app/paper_implementations/')  # 디렉토리 변경
 
         # 파일 추가 및 커밋
         subprocess.check_call(["git", "add", "."])
