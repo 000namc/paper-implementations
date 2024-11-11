@@ -80,7 +80,7 @@ for epoch in range(1, cfg.num_epochs+1):
     total_loss = 0.0
 
     # training phase
-    with tqdm(train_dl, leave=False) as pbar:
+    with tqdm(train_dl, dynamic_ncols=True, mininterval=5.0, leave=True) as pbar:
         optimizer.zero_grad()
 
         for idx, batch in enumerate(pbar):
