@@ -33,6 +33,7 @@ class cfg:
     num_epochs = 10
 
 # python train.py --model_name alexnet --experiment_name init
+wandb.init(project=cfg.model_name, name=cfg.experiment_name)
 git_push_process(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
 
 logger = setup_logger(model_name = cfg.model_name, experiment_name = cfg.experiment_name)
