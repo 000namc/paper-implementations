@@ -51,10 +51,8 @@ def set_seed(seed = 42):
     random.seed(seed)
     torch.manual_seed(seed)
     torch.cuda.manual_seed(seed)
-    # When running on the CuDNN backend, two further options must be set
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = False
-    # Set a fixed value for the hash seed
     os.environ['PYTHONHASHSEED'] = str(seed)
     print('> SEEDING DONE')
     
@@ -105,15 +103,13 @@ for epoch in range(1, cfg.num_epochs+1):
     total = 0
     total_val_loss = 0.0
 
-    with torch.no_grad():  # 평가 시에는 그래디언트 계산을 하지 않음
+    with torch.no_grad():
         for images, labels in valid_dl:
             images, labels = images.to(device), labels.to(device)
 
-            # 순전파
             outputs = model(images)
             loss = criterion(outputs, labels)
 
-            # 정확도 계산
             _, predicted = torch.max(outputs.data, 1)
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
