@@ -1,15 +1,34 @@
 
 
 ** paper-implementations
-deep learning paper를 하나씩 구현해보고 아카이브 하기 위해 만든 repo입니다. 
+deep learning paper를 하나씩 구현해보고 아카이브 하기 위해 만든 repo입니다.
 
+** rule
+제 스스로 실험에 대한 기록을 쉽게 하기 위해 일련의 규칙을 정했습니다.
+
+- main branch에 뼈대가 되는 코드들을 정리하고 각각의 실험은 experients/{model_name} branch에 정리하고 있습니다.
+- 아래 예시처럼 train.py를 수행시 model_name, experiment_name을 적어주기로 합니다., 해당 실험에 대한 환경이 해당 브랜치로 push가 됩니다.
+#+BEGIN_SRC
+python train.py --model_name alexnet --experiment_name init
+#+END_SRC
+- 또한, train.py는 experiments/details.json 경로에 실험에대한 요약정보를 적어 주어야 합니다. 
+#+BEGIN_SRC
+{
+    "alexnet" : {
+        "init" : {
+            "summary" : "뼈대를 만들고 코드 동작을 확인하고 있습니다."
+        }
+    }
+}
+#+END_SRC
 
 ** vision
+vision model의 architecture는 https://github.com/pytorch/vision/blob/main/torchvision/models/ 에서 참고하고 있습니다.
 
-*** TODO LeNet
-*** TODO AlexNet
-*** TODO VGG
-*** TODO GoogLeNet
-*** TODO ResNet
-*** TODO DenseNet
+*** AlexNet
+*** VGG
+*** GoogLeNet
+*** ResNet
+*** VIT
 
+** nlp
